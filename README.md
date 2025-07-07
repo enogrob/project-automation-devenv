@@ -563,6 +563,8 @@ This project is crafted by InMov - Intelligence in Movement (2013-2020) under Ro
 ## References
 
 * [Research Obras DevTools on GitHub](https://github.com/enogrob/research-obras-devtools) - Main project repository containing the core utilities and documentation
+* [Obras Devtools Presentation - key](resources/obras-devtools.key) - Utilities for Development and Testing
+* [Obras Devtools Presentation - pptx](resources/obras-devtools.pptx) - Utilities for Development and Testing
 * [Pipe Viewer (pv)](http://www.ivarch.com/programs/pv.shtml) - Progress visualization tool used for monitoring long-running operations and data transfer
 * [ANSI Library](https://github.com/fidian/ansi) - Terminal styling and color library providing enhanced user interface capabilities
 * [Revolver](https://github.com/molovo/revolver) - Spinner and progress indicator library for terminal applications
