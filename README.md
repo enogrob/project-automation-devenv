@@ -29,9 +29,7 @@ Target users include Ruby on Rails developers working on multi-tenant applicatio
 <br/>
 
 <div align="center">
-  <a href="https://www.youtube.com/playlist?list=PLFfgJOsnFX6uF2hE5OtbKPOoKOECyQmnx" target="_blank">
-    <img src="images/devenv.png" alt="Movistar Automation Demo">
-  </a>
+    <img src="images/devenv.png" alt="Project Automation Devenv">
 </div>
 
 <br/>
