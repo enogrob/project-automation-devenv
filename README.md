@@ -26,6 +26,16 @@ The toolkit serves as a centralized command-line interface that automates common
 
 Target users include Ruby on Rails developers working on multi-tenant applications, development teams requiring standardized tooling across different environments, and DevOps engineers seeking to automate repetitive development tasks. The project demonstrates advanced bash scripting techniques for creating professional development toolchains and serves as an excellent reference for building custom automation solutions in enterprise development environments.
 
+<br/>
+
+<div align="center">
+  <a href="https://www.youtube.com/playlist?list=PLFfgJOsnFX6uF2hE5OtbKPOoKOECyQmnx" target="_blank">
+    <img src="images/devenv.png" alt="Movistar Automation Demo">
+  </a>
+</div>
+
+<br/>
+
 ## Architecture
 
 ```mermaid
