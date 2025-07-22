@@ -29,10 +29,13 @@ Target users include Ruby on Rails developers working on multi-tenant applicatio
 <br/>
 
 <div align="center">
+  <a href="resources/obras-devtools.pptx" target="_blank">
     <img src="images/devenv.png" alt="Project Automation Devenv">
+  </a>
 </div>
 
 <br/>
+
 
 ## Architecture
 
