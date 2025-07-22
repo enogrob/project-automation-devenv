@@ -400,6 +400,14 @@ site start
 site
 ```
 
+<br/>
+
+<div align="center">
+    <img src="images/site.png" alt="Project Automation Devenv">
+</div>
+
+<br/>
+
 **Output**: Displays running processes, database status, and available services with color-coded status indicators.
 
 ### Database Operations
