@@ -40,52 +40,60 @@ Target users include Ruby on Rails developers working on multi-tenant applicatio
 ## Architecture
 
 ```mermaid
+%% Mermaid diagram with emoticons and pastel colors
 graph TD
-    A[obras_utils Core] --> B[Site Management]
-    A --> C[Service Management]
-    A --> D[Database Management]
-    A --> E[Development Tools]
-    
-    subgraph "Site Operations"
-        B --> F[Site Selection]
-        B --> G[Environment Config]
-        B --> H[Rails Commands]
-    end
-    
-    subgraph "Service Layer"
-        C --> I[MySQL Service]
-        C --> J[Redis Service]
-        C --> K[Mailcatcher]
-        C --> L[Sidekiq Workers]
-        C --> M[NGrok Tunneling]
-    end
-    
-    subgraph "Data Layer"
-        D --> N[Database Creation]
-        D --> O[Migration Management]
-        D --> P[Backup/Restore]
-        D --> Q[Dump Management]
-        D --> R[Connection Tools]
-    end
-    
-    subgraph "Development Environment"
-        E --> S[Code Quality Tools]
-        E --> T[Testing Framework]
-        E --> U[Git Integration]
-        E --> V[Editor Support]
-    end
-    
-    subgraph "External Integrations"
-        W[Docker Container] --> A
-        X[Engine Yard Cloud] --> P
-        Y[Trello CLI] --> E
-        Z[GitHub Repositories] --> U
-    end
-    
-    A --> AA[Terminal Interface]
-    AA --> BB[Progress Indicators]
-    AA --> CC[Error Handling]
-    AA --> DD[Help System]
+  classDef pastelBlue fill:#dbeafe,stroke:#60a5fa,stroke-width:2px,color:#1e293b;
+  classDef pastelGreen fill:#dcfce7,stroke:#4ade80,stroke-width:2px,color:#166534;
+  classDef pastelPink fill:#fce7f3,stroke:#f472b6,stroke-width:2px,color:#831843;
+  classDef pastelYellow fill:#fef9c3,stroke:#fde047,stroke-width:2px,color:#92400e;
+  classDef pastelPurple fill:#ede9fe,stroke:#a78bfa,stroke-width:2px,color:#4c1d95;
+  classDef pastelGray fill:#f3f4f6,stroke:#9ca3af,stroke-width:2px,color:#374151;
+
+  A["🛠️ obras_utils Core"]:::pastelBlue --> B["🏢 Site Management"]:::pastelGreen
+  A --> C["🔧 Service Management"]:::pastelPink
+  A --> D["🗄️ Database Management"]:::pastelYellow
+  A --> E["🧪 Development Tools"]:::pastelPurple
+
+  subgraph "Site Operations 🏢"
+    B --> F["🔀 Site Selection"]:::pastelGreen
+    B --> G["⚙️ Environment Config"]:::pastelGreen
+    B --> H["🚂 Rails Commands"]:::pastelGreen
+  end
+
+  subgraph "Service Layer 🔧"
+    C --> I["🛢️ MySQL Service"]:::pastelPink
+    C --> J["🧊 Redis Service"]:::pastelPink
+    C --> K["📧 Mailcatcher"]:::pastelPink
+    C --> L["🦾 Sidekiq Workers"]:::pastelPink
+    C --> M["🌐 NGrok Tunneling"]:::pastelPink
+  end
+
+  subgraph "Data Layer 🗄️"
+    D --> N["🆕 Database Creation"]:::pastelYellow
+    D --> O["🔄 Migration Management"]:::pastelYellow
+    D --> P["💾 Backup/Restore"]:::pastelYellow
+    D --> Q["📦 Dump Management"]:::pastelYellow
+    D --> R["🔌 Connection Tools"]:::pastelYellow
+  end
+
+  subgraph "Development Environment 🧪"
+    E --> S["🧹 Code Quality Tools"]:::pastelPurple
+    E --> T["🧪 Testing Framework"]:::pastelPurple
+    E --> U["🔀 Git Integration"]:::pastelPurple
+    E --> V["📝 Editor Support"]:::pastelPurple
+  end
+
+  subgraph "External Integrations 🌐"
+    W["🐳 Docker Container"]:::pastelGray --> A
+    X["☁️ Engine Yard Cloud"]:::pastelGray --> P
+    Y["📋 Trello CLI"]:::pastelGray --> E
+    Z["🐙 GitHub Repositories"]:::pastelGray --> U
+  end
+
+  A --> AA["🖥️ Terminal Interface"]:::pastelBlue
+  AA --> BB["⏳ Progress Indicators"]:::pastelBlue
+  AA --> CC["❗ Error Handling"]:::pastelBlue
+  AA --> DD["❓ Help System"]:::pastelBlue
 ```
 
 ### Alternative Perspectives
@@ -94,62 +102,64 @@ graph TD
 <summary><strong>1. Class Diagram - Structural Relationships</strong> (Click to expand)</summary>
 
 ```mermaid
+%% Class diagram with emoticons and pastel colors
 classDiagram
-    class ObrasUtils {
-        +OBRAS_UTILS_VERSION: String
-        +INSTALL_DIR: String
-        +OBRAS: String
-        +SITES: Array
-        +version()
-        +update()
-        +check()
-        +update_deps()
-    }
-    
-    class SiteManager {
-        +current_site: String
-        +available_sites: Array
-        +set_site(name)
-        +start_site()
-        +stop_site()
-        +get_status()
-    }
-    
-    class DatabaseManager {
-        +database_name: String
-        +connection_config: Object
-        +create_database()
-        +drop_database()
-        +migrate()
-        +seed()
-        +backup()
-        +restore()
-    }
-    
-    class ServiceManager {
-        +mysql_service: Service
-        +redis_service: Service
-        +mailcatcher_service: Service
-        +start_service(name)
-        +stop_service(name)
-        +restart_service(name)
-        +get_service_status(name)
-    }
-    
-    class DevelopmentTools {
-        +code_quality_tools: Array
-        +testing_framework: String
-        +run_tests()
-        +check_code_quality()
-        +generate_reports()
-    }
-    
-    ObrasUtils "1" --> "1" SiteManager : manages
-    ObrasUtils "1" --> "1" DatabaseManager : controls
-    ObrasUtils "1" --> "1" ServiceManager : orchestrates
-    ObrasUtils "1" --> "1" DevelopmentTools : provides
-    SiteManager "1" --> "*" DatabaseManager : configures
-    ServiceManager "1" --> "*" DatabaseManager : supports
+  classDef pastelBlue fill:#dbeafe,stroke:#60a5fa,stroke-width:2px,color:#1e293b;
+  classDef pastelGreen fill:#dcfce7,stroke:#4ade80,stroke-width:2px,color:#166534;
+  classDef pastelPink fill:#fce7f3,stroke:#f472b6,stroke-width:2px,color:#831843;
+  classDef pastelYellow fill:#fef9c3,stroke:#fde047,stroke-width:2px,color:#92400e;
+  classDef pastelPurple fill:#ede9fe,stroke:#a78bfa,stroke-width:2px,color:#4c1d95;
+
+  class ObrasUtils {
+    +OBRAS_UTILS_VERSION: String 🏷️
+    +INSTALL_DIR: String 📁
+    +OBRAS: String 🏗️
+    +SITES: Array 🌐
+    +version() 🔢
+    +update() ⬆️
+    +check() ✅
+    +update_deps() 📦
+  }
+  class SiteManager {
+    +current_site: String 🏢
+    +available_sites: Array 🗂️
+    +set_site(name) 🔀
+    +start_site() ▶️
+    +stop_site() ⏹️
+    +get_status() ℹ️
+  }
+  class DatabaseManager {
+    +database_name: String 🗄️
+    +connection_config: Object 🔌
+    +create_database() 🆕
+    +drop_database() 🗑️
+    +migrate() 🔄
+    +seed() 🌱
+    +backup() 💾
+    +restore() ♻️
+  }
+  class ServiceManager {
+    +mysql_service: Service 🛢️
+    +redis_service: Service 🧊
+    +mailcatcher_service: Service 📧
+    +start_service(name) ▶️
+    +stop_service(name) ⏹️
+    +restart_service(name) 🔁
+    +get_service_status(name) ℹ️
+  }
+  class DevelopmentTools {
+    +code_quality_tools: Array 🧹
+    +testing_framework: String 🧪
+    +run_tests() 🏃
+    +check_code_quality() 🧼
+    +generate_reports() 📊
+  }
+  ObrasUtils "1" --> "1" SiteManager : manages
+  ObrasUtils "1" --> "1" DatabaseManager : controls
+  ObrasUtils "1" --> "1" ServiceManager : orchestrates
+  ObrasUtils "1" --> "1" DevelopmentTools : provides
+  SiteManager "1" --> "*" DatabaseManager : configures
+  ServiceManager "1" --> "*" DatabaseManager : supports
 ```
 
 </details>
@@ -158,41 +168,49 @@ classDiagram
 <summary><strong>2. Journey Process - State Transitions</strong> (Click to expand)</summary>
 
 ```mermaid
+%% State diagram with emoticons and pastel colors
 stateDiagram-v2
-    [*] --> ProjectInit
-    ProjectInit --> SiteSelection: init_obras
-    
-    SiteSelection --> ConfigLoading: site [name]
-    ConfigLoading --> EnvironmentSetup
-    
-    EnvironmentSetup --> ServicesCheck: Check dependencies
-    ServicesCheck --> ServicesStart: Start required services
-    ServicesStart --> DatabaseReady: DB initialization
-    
-    DatabaseReady --> DevelopmentMode: site start
-    
-    DevelopmentMode --> Testing: site test
-    DevelopmentMode --> CodeQuality: site audit/rubocop
-    DevelopmentMode --> DatabaseOps: site db [command]
-    DevelopmentMode --> ServiceOps: site services [command]
-    
-    Testing --> DevelopmentMode: Continue development
-    CodeQuality --> DevelopmentMode: Apply fixes
-    DatabaseOps --> DevelopmentMode: Return to coding
-    ServiceOps --> DevelopmentMode: Resume work
-    
-    DevelopmentMode --> Cleanup: site stop
-    Cleanup --> [*]: Environment shutdown
-    
-    note right of ServicesCheck
-        Validates MySQL, Redis,
-        Mailcatcher, Sidekiq
-    end note
-    
-    note right of DatabaseOps
-        Migrations, Seeds,
-        Backups, Dumps
-    end note
+  state "🚀 Project Init" as ProjectInit
+  state "🏢 Site Selection" as SiteSelection
+  state "⚙️ Config Loading" as ConfigLoading
+  state "🌱 Environment Setup" as EnvironmentSetup
+  state "🔍 Services Check" as ServicesCheck
+  state "▶️ Services Start" as ServicesStart
+  state "🗄️ Database Ready" as DatabaseReady
+  state "💻 Development Mode" as DevelopmentMode
+  state "🧪 Testing" as Testing
+  state "🧹 Code Quality" as CodeQuality
+  state "🗄️ Database Ops" as DatabaseOps
+  state "🔧 Service Ops" as ServiceOps
+  state "🧹 Cleanup" as Cleanup
+
+  [*] --> ProjectInit
+  ProjectInit --> SiteSelection: init_obras
+  SiteSelection --> ConfigLoading: site [name]
+  ConfigLoading --> EnvironmentSetup
+  EnvironmentSetup --> ServicesCheck: Check dependencies
+  ServicesCheck --> ServicesStart: Start required services
+  ServicesStart --> DatabaseReady: DB initialization
+  DatabaseReady --> DevelopmentMode: site start
+  DevelopmentMode --> Testing: site test
+  DevelopmentMode --> CodeQuality: site audit/rubocop
+  DevelopmentMode --> DatabaseOps: site db [command]
+  DevelopmentMode --> ServiceOps: site services [command]
+  Testing --> DevelopmentMode: Continue development
+  CodeQuality --> DevelopmentMode: Apply fixes
+  DatabaseOps --> DevelopmentMode: Return to coding
+  ServiceOps --> DevelopmentMode: Resume work
+  DevelopmentMode --> Cleanup: site stop
+  Cleanup --> [*]: Environment shutdown
+
+  note right of ServicesCheck
+    🛢️ MySQL, 🧊 Redis,
+    📧 Mailcatcher, 🦾 Sidekiq
+  end note
+  note right of DatabaseOps
+    🔄 Migrations, 🌱 Seeds,
+    💾 Backups, 📦 Dumps
+  end note
 ```
 
 </details>
@@ -201,57 +219,53 @@ stateDiagram-v2
 <summary><strong>3. Mind Map - Interconnected Themes</strong> (Click to expand)</summary>
 
 ```mermaid
+%% Mind map with emoticons and pastel colors
 mindmap
-  root((Bash Automation Devenv))
-    Site Management
-      Multi-tenant Support
-      Environment Switching
-      Configuration Management
-      Rails Integration
-    
-    Service Orchestration
-      MySQL Database
-      Redis Cache
-      Mailcatcher SMTP
-      Sidekiq Background Jobs
-      NGrok Tunneling
-      Docker Containers
-    
-    Database Operations
-      Schema Migrations
-      Data Seeding
-      Backup Management
-      Dump Import/Export
-      Connection Tools
-      Engine Yard Integration
-    
-    Development Workflow
-      Code Quality Analysis
-        Rubocop Linting
-        Brakeman Security
-        RubyCritic Metrics
-        Test Coverage
-      Testing Framework
-        RSpec Tests
-        System Tests
-        Test Environment Setup
-      Version Control
-        Git Integration
-        Repository Management
-        Branch Operations
-    
-    Editor Integration
-      VS Code Support
-      RubyMine Support
-      Configuration Files
-      Extension Management
-    
-    Automation Features
-      Progress Indicators
-      Spinner Animations
-      Error Handling
-      Help Documentation
-      Update Management
+  root((🛠️ Bash Automation Devenv))
+    Site_Management[🏢 Site Management]
+      MultiTenant[🌐 Multi-tenant Support]
+      EnvSwitch[🔀 Environment Switching]
+      ConfigMgmt[⚙️ Configuration Management]
+      RailsInt[🚂 Rails Integration]
+    Service_Orch[🔧 Service Orchestration]
+      MySQL[🛢️ MySQL Database]
+      Redis[🧊 Redis Cache]
+      Mailcatcher[📧 Mailcatcher SMTP]
+      Sidekiq[🦾 Sidekiq Background Jobs]
+      NGrok[🌐 NGrok Tunneling]
+      Docker[🐳 Docker Containers]
+    Database_Ops[🗄️ Database Operations]
+      SchemaMig[🔄 Schema Migrations]
+      DataSeed[🌱 Data Seeding]
+      Backup[💾 Backup Management]
+      Dump[📦 Dump Import/Export]
+      ConnTools[🔌 Connection Tools]
+      EYard[☁️ Engine Yard Integration]
+    Dev_Workflow[💻 Development Workflow]
+      CodeQual[🧹 Code Quality Analysis]
+        Rubocop[🧼 Rubocop Linting]
+        Brakeman[🛡️ Brakeman Security]
+        RubyCritic[📊 RubyCritic Metrics]
+        TestCov[🧪 Test Coverage]
+      TestFW[🧪 Testing Framework]
+        RSpec[🧪 RSpec Tests]
+        SysTest[🖥️ System Tests]
+        TestEnv[🌱 Test Environment Setup]
+      VCS[🔀 Version Control]
+        GitInt[🐙 Git Integration]
+        RepoMgmt[📁 Repository Management]
+        BranchOps[🌿 Branch Operations]
+    EditorInt[📝 Editor Integration]
+      VSCode[🖥️ VS Code Support]
+      RubyMine[💎 RubyMine Support]
+      ConfigFiles[📄 Configuration Files]
+      ExtMgmt[🧩 Extension Management]
+    Automation[🤖 Automation Features]
+      Progress[⏳ Progress Indicators]
+      Spinner[🌀 Spinner Animations]
+      Error[❗ Error Handling]
+      Help[❓ Help Documentation]
+      Update[⬆️ Update Management]
 ```
 
 </details>
