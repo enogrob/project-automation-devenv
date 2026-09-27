@@ -40,60 +40,32 @@ Target users include Ruby on Rails developers working on multi-tenant applicatio
 ## Architecture
 
 ```mermaid
-%% Mermaid diagram with emoticons and pastel colors
-graph TD
-  classDef pastelBlue fill:#dbeafe,stroke:#60a5fa,stroke-width:2px,color:#1e293b;
-  classDef pastelGreen fill:#dcfce7,stroke:#4ade80,stroke-width:2px,color:#166534;
-  classDef pastelPink fill:#fce7f3,stroke:#f472b6,stroke-width:2px,color:#831843;
-  classDef pastelYellow fill:#fef9c3,stroke:#fde047,stroke-width:2px,color:#92400e;
-  classDef pastelPurple fill:#ede9fe,stroke:#a78bfa,stroke-width:2px,color:#4c1d95;
-  classDef pastelGray fill:#f3f4f6,stroke:#9ca3af,stroke-width:2px,color:#374151;
+%%{init: {"theme":"base","themeVariables":{"lineColor":"#52606D","fontSize":"18px"}}}%%
+flowchart LR
+  classDef process fill:#DCEBFA,stroke:#355C7D,stroke-width:1.5px,color:#1E293B;
+  classDef data fill:#DDF2E1,stroke:#3F6B4F,stroke-width:1.5px,color:#1E3324;
+  classDef external fill:#FBE4F0,stroke:#8E496D,stroke-width:1.5px,color:#3F2434;
+  External["🌐 External Integrations<br/>Docker · NGrok · Engine Yard<br/>Trello · GitHub"]
+  Core["🛠️ obras_utils Core"]
+  Site["🏢 Site Management"]
+  Services["🔧 Service Orchestration"]
+  Data["🗄️ Database Operations"]
+  Tools["🧪 Development Tooling"]
+  Terminal["🖥️ Terminal Interface"]
 
-  A["🛠️ obras_utils Core"]:::pastelBlue --> B["🏢 Site Management"]:::pastelGreen
-  A --> C["🔧 Service Management"]:::pastelPink
-  A --> D["🗄️ Database Management"]:::pastelYellow
-  A --> E["🧪 Development Tools"]:::pastelPurple
+  External -->|provides runtime| Core
+  External -->|provides cloud backups| Data
+  External -->|connects project tooling| Tools
+  Core -->|manages| Site
+  Core -->|orchestrates| Services
+  Core -->|handles| Data
+  Core -->|provides| Tools
+  Core -->|reports through| Terminal
 
-  subgraph "Site Operations 🏢"
-    B --> F["🔀 Site Selection"]:::pastelGreen
-    B --> G["⚙️ Environment Config"]:::pastelGreen
-    B --> H["🚂 Rails Commands"]:::pastelGreen
-  end
-
-  subgraph "Service Layer 🔧"
-    C --> I["🛢️ MySQL Service"]:::pastelPink
-    C --> J["🧊 Redis Service"]:::pastelPink
-    C --> K["📧 Mailcatcher"]:::pastelPink
-    C --> L["🦾 Sidekiq Workers"]:::pastelPink
-    C --> M["🌐 NGrok Tunneling"]:::pastelPink
-  end
-
-  subgraph "Data Layer 🗄️"
-    D --> N["🆕 Database Creation"]:::pastelYellow
-    D --> O["🔄 Migration Management"]:::pastelYellow
-    D --> P["💾 Backup/Restore"]:::pastelYellow
-    D --> Q["📦 Dump Management"]:::pastelYellow
-    D --> R["🔌 Connection Tools"]:::pastelYellow
-  end
-
-  subgraph "Development Environment 🧪"
-    E --> S["🧹 Code Quality Tools"]:::pastelPurple
-    E --> T["🧪 Testing Framework"]:::pastelPurple
-    E --> U["🔀 Git Integration"]:::pastelPurple
-    E --> V["📝 Editor Support"]:::pastelPurple
-  end
-
-  subgraph "External Integrations 🌐"
-    W["🐳 Docker Container"]:::pastelGray --> A
-    X["☁️ Engine Yard Cloud"]:::pastelGray --> P
-    Y["📋 Trello CLI"]:::pastelGray --> E
-    Z["🐙 GitHub Repositories"]:::pastelGray --> U
-  end
-
-  A --> AA["🖥️ Terminal Interface"]:::pastelBlue
-  AA --> BB["⏳ Progress Indicators"]:::pastelBlue
-  AA --> CC["❗ Error Handling"]:::pastelBlue
-  AA --> DD["❓ Help System"]:::pastelBlue
+  class External external;
+  class Core,Site,Services,Tools,Terminal process;
+  class Data data;
+  linkStyle default stroke:#52606D,stroke-width:1.5px;
 ```
 
 ### Alternative Perspectives
@@ -102,57 +74,59 @@ graph TD
 <summary><strong>1. Class Diagram - Structural Relationships</strong> (Click to expand)</summary>
 
 ```mermaid
-%% Class diagram with emoticons and pastel colors
+%%{init: {"theme":"base","themeVariables":{"lineColor":"#52606D"}}}%%
 classDiagram
-  classDef pastelBlue fill:#dbeafe,stroke:#60a5fa,stroke-width:2px,color:#1e293b;
-  classDef pastelGreen fill:#dcfce7,stroke:#4ade80,stroke-width:2px,color:#166534;
-  classDef pastelPink fill:#fce7f3,stroke:#f472b6,stroke-width:2px,color:#831843;
-  classDef pastelYellow fill:#fef9c3,stroke:#fde047,stroke-width:2px,color:#92400e;
-  classDef pastelPurple fill:#ede9fe,stroke:#a78bfa,stroke-width:2px,color:#4c1d95;
+  classDef process fill:#DCEBFA,stroke:#355C7D,stroke-width:1.5px,color:#1E293B
+  classDef data fill:#DDF2E1,stroke:#3F6B4F,stroke-width:1.5px,color:#1E3324
 
   class ObrasUtils {
-    +OBRAS_UTILS_VERSION: String 🏷️
-    +INSTALL_DIR: String 📁
-    +OBRAS: String 🏗️
-    +SITES: Array 🌐
-    +version() 🔢
-    +update() ⬆️
-    +check() ✅
-    +update_deps() 📦
+    <<🛠️ Core>>
+    +OBRAS_UTILS_VERSION: String
+    +INSTALL_DIR: String
+    +OBRAS: String
+    +SITES: Array
+    +version()
+    +update()
+    +check()
+    +update_deps()
   }
   class SiteManager {
-    +current_site: String 🏢
-    +available_sites: Array 🗂️
-    +set_site(name) 🔀
-    +start_site() ▶️
-    +stop_site() ⏹️
-    +get_status() ℹ️
+    <<🏢 Sites>>
+    +current_site: String
+    +available_sites: Array
+    +set_site(name)
+    +start_site()
+    +stop_site()
+    +get_status()
   }
   class DatabaseManager {
-    +database_name: String 🗄️
-    +connection_config: Object 🔌
-    +create_database() 🆕
-    +drop_database() 🗑️
-    +migrate() 🔄
-    +seed() 🌱
-    +backup() 💾
-    +restore() ♻️
+    <<🗄️ Data>>
+    +database_name: String
+    +connection_config: Object
+    +create_database()
+    +drop_database()
+    +migrate()
+    +seed()
+    +backup()
+    +restore()
   }
   class ServiceManager {
-    +mysql_service: Service 🛢️
-    +redis_service: Service 🧊
-    +mailcatcher_service: Service 📧
-    +start_service(name) ▶️
-    +stop_service(name) ⏹️
-    +restart_service(name) 🔁
-    +get_service_status(name) ℹ️
+    <<🔧 Services>>
+    +mysql_service: Service
+    +redis_service: Service
+    +mailcatcher_service: Service
+    +start_service(name)
+    +stop_service(name)
+    +restart_service(name)
+    +get_service_status(name)
   }
   class DevelopmentTools {
-    +code_quality_tools: Array 🧹
-    +testing_framework: String 🧪
-    +run_tests() 🏃
-    +check_code_quality() 🧼
-    +generate_reports() 📊
+    <<🧪 Tooling>>
+    +code_quality_tools: Array
+    +testing_framework: String
+    +run_tests()
+    +check_code_quality()
+    +generate_reports()
   }
   ObrasUtils "1" --> "1" SiteManager : manages
   ObrasUtils "1" --> "1" DatabaseManager : controls
@@ -160,6 +134,11 @@ classDiagram
   ObrasUtils "1" --> "1" DevelopmentTools : provides
   SiteManager "1" --> "*" DatabaseManager : configures
   ServiceManager "1" --> "*" DatabaseManager : supports
+  class ObrasUtils process
+  class SiteManager process
+  class ServiceManager process
+  class DevelopmentTools process
+  class DatabaseManager data
 ```
 
 </details>
@@ -168,8 +147,10 @@ classDiagram
 <summary><strong>2. Journey Process - State Transitions</strong> (Click to expand)</summary>
 
 ```mermaid
-%% State diagram with emoticons and pastel colors
+%%{init: {"theme":"base","themeVariables":{"lineColor":"#52606D"}}}%%
 stateDiagram-v2
+  classDef process fill:#DCEBFA,stroke:#355C7D,stroke-width:1.5px,color:#1E293B
+  classDef data fill:#DDF2E1,stroke:#3F6B4F,stroke-width:1.5px,color:#1E3324
   state "🚀 Project Init" as ProjectInit
   state "🏢 Site Selection" as SiteSelection
   state "⚙️ Config Loading" as ConfigLoading
@@ -211,6 +192,9 @@ stateDiagram-v2
     🔄 Migrations, 🌱 Seeds,
     💾 Backups, 📦 Dumps
   end note
+
+  class ProjectInit,SiteSelection,ConfigLoading,EnvironmentSetup,ServicesCheck,ServicesStart,DevelopmentMode,Testing,CodeQuality,ServiceOps,Cleanup process
+  class DatabaseReady,DatabaseOps data
 ```
 
 </details>
@@ -219,7 +203,7 @@ stateDiagram-v2
 <summary><strong>3. Mind Map - Interconnected Themes</strong> (Click to expand)</summary>
 
 ```mermaid
-%% Mind map with emoticons and pastel colors
+%%{init: {"theme":"base","themeVariables":{"lineColor":"#52606D"}}}%%
 mindmap
   root((🛠️ Bash Automation Devenv))
     Site_Management[🏢 Site Management]
