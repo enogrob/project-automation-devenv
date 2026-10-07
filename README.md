@@ -2,7 +2,7 @@
 
 [Homepage](https://github.com/enogrob/bash-automation-devenv)
 
-![project image](images/project.png)
+![project image](images/project-automation-devenv-infographic.webp)
 
 ## Contents
 
@@ -40,17 +40,15 @@ Target users include Ruby on Rails developers working on multi-tenant applicatio
 ## Architecture
 
 ```mermaid
-%%{init: {"theme":"base","themeVariables":{"lineColor":"#52606D","fontSize":"18px"}}}%%
 flowchart LR
-  classDef process fill:#DCEBFA,stroke:#355C7D,stroke-width:1.5px,color:#1E293B;
-  classDef data fill:#DDF2E1,stroke:#3F6B4F,stroke-width:1.5px,color:#1E3324;
-  classDef external fill:#FBE4F0,stroke:#8E496D,stroke-width:1.5px,color:#3F2434;
-  External["🌐 External Integrations<br/>Docker · NGrok · Engine Yard<br/>Trello · GitHub"]
-  Core["🛠️ obras_utils Core"]
+  classDef context fill:#D9EAF7,stroke:#7AA6C2,color:#3E342C,stroke-width:2px;
+  classDef orchestration fill:#DDE3F4,stroke:#8998C8,color:#3E342C,stroke-width:2px;
+  External["📚 External Integrations<br/>Docker · NGrok · Engine Yard<br/>Trello · GitHub"]
+  Core["⚙️ obras_utils Core"]
   Site["🏢 Site Management"]
   Services["🔧 Service Orchestration"]
   Data["🗄️ Database Operations"]
-  Tools["🧪 Development Tooling"]
+  Tools["🧰 Development Tooling"]
   Terminal["🖥️ Terminal Interface"]
 
   External -->|provides runtime| Core
@@ -62,10 +60,8 @@ flowchart LR
   Core -->|provides| Tools
   Core -->|reports through| Terminal
 
-  class External external;
-  class Core,Site,Services,Tools,Terminal process;
-  class Data data;
-  linkStyle default stroke:#52606D,stroke-width:1.5px;
+  class External context;
+  class Core orchestration;
 ```
 
 ### Alternative Perspectives
@@ -74,13 +70,8 @@ flowchart LR
 <summary><strong>1. Class Diagram - Structural Relationships</strong> (Click to expand)</summary>
 
 ```mermaid
-%%{init: {"theme":"base","themeVariables":{"lineColor":"#52606D"}}}%%
 classDiagram
-  classDef process fill:#DCEBFA,stroke:#355C7D,stroke-width:1.5px,color:#1E293B
-  classDef data fill:#DDF2E1,stroke:#3F6B4F,stroke-width:1.5px,color:#1E3324
-
-  class ObrasUtils {
-    <<🛠️ Core>>
+  class ObrasUtils["⚙️ obras_utils Core"] {
     +OBRAS_UTILS_VERSION: String
     +INSTALL_DIR: String
     +OBRAS: String
@@ -90,8 +81,7 @@ classDiagram
     +check()
     +update_deps()
   }
-  class SiteManager {
-    <<🏢 Sites>>
+  class SiteManager["🏢 Site Manager"] {
     +current_site: String
     +available_sites: Array
     +set_site(name)
@@ -99,8 +89,7 @@ classDiagram
     +stop_site()
     +get_status()
   }
-  class DatabaseManager {
-    <<🗄️ Data>>
+  class DatabaseManager["🗄️ Database Manager"] {
     +database_name: String
     +connection_config: Object
     +create_database()
@@ -110,8 +99,7 @@ classDiagram
     +backup()
     +restore()
   }
-  class ServiceManager {
-    <<🔧 Services>>
+  class ServiceManager["🔧 Service Manager"] {
     +mysql_service: Service
     +redis_service: Service
     +mailcatcher_service: Service
@@ -120,8 +108,7 @@ classDiagram
     +restart_service(name)
     +get_service_status(name)
   }
-  class DevelopmentTools {
-    <<🧪 Tooling>>
+  class DevelopmentTools["🧰 Development Tools"] {
     +code_quality_tools: Array
     +testing_framework: String
     +run_tests()
@@ -134,11 +121,6 @@ classDiagram
   ObrasUtils "1" --> "1" DevelopmentTools : provides
   SiteManager "1" --> "*" DatabaseManager : configures
   ServiceManager "1" --> "*" DatabaseManager : supports
-  class ObrasUtils process
-  class SiteManager process
-  class ServiceManager process
-  class DevelopmentTools process
-  class DatabaseManager data
 ```
 
 </details>
@@ -147,10 +129,7 @@ classDiagram
 <summary><strong>2. Journey Process - State Transitions</strong> (Click to expand)</summary>
 
 ```mermaid
-%%{init: {"theme":"base","themeVariables":{"lineColor":"#52606D"}}}%%
 stateDiagram-v2
-  classDef process fill:#DCEBFA,stroke:#355C7D,stroke-width:1.5px,color:#1E293B
-  classDef data fill:#DDF2E1,stroke:#3F6B4F,stroke-width:1.5px,color:#1E3324
   state "🚀 Project Init" as ProjectInit
   state "🏢 Site Selection" as SiteSelection
   state "⚙️ Config Loading" as ConfigLoading
@@ -193,8 +172,6 @@ stateDiagram-v2
     💾 Backups, 📦 Dumps
   end note
 
-  class ProjectInit,SiteSelection,ConfigLoading,EnvironmentSetup,ServicesCheck,ServicesStart,DevelopmentMode,Testing,CodeQuality,ServiceOps,Cleanup process
-  class DatabaseReady,DatabaseOps data
 ```
 
 </details>
@@ -203,7 +180,6 @@ stateDiagram-v2
 <summary><strong>3. Mind Map - Interconnected Themes</strong> (Click to expand)</summary>
 
 ```mermaid
-%%{init: {"theme":"base","themeVariables":{"lineColor":"#52606D"}}}%%
 mindmap
   root((🛠️ Bash Automation Devenv))
     Site_Management[🏢 Site Management]
