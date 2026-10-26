@@ -40,16 +40,17 @@ Target users include Ruby on Rails developers working on multi-tenant applicatio
 ## Architecture
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"fontSize": "13px", "primaryColor": "#E6E9ED", "primaryBorderColor": "#657180", "primaryTextColor": "#3E342C", "lineColor": "#64748B", "edgeLabelBackground": "#FFFFFF"}, "flowchart": {"minNodeWidth": 0, "wrappingWidth": 200, "padding": 8, "nodeSpacing": 36, "rankSpacing": 44, "curve": "basis"}}}%%
 flowchart LR
   classDef context fill:#D9EAF7,stroke:#7AA6C2,color:#3E342C,stroke-width:2px;
   classDef orchestration fill:#DDE3F4,stroke:#8998C8,color:#3E342C,stroke-width:2px;
-  External["📚 External Integrations<br/>Docker · NGrok · Engine Yard<br/>Trello · GitHub"]
-  Core["⚙️ obras_utils Core"]
-  Site["🏢 Site Management"]
-  Services["🔧 Service Orchestration"]
-  Data["🗄️ Database Operations"]
-  Tools["🧰 Development Tooling"]
-  Terminal["🖥️ Terminal Interface"]
+  External(["🌐 External Integrations"])
+  Core(["⚙️ obras_utils Core"])
+  Site(["🏢 Site Management"])
+  Services(["🔧 Service Orchestration"])
+  Data(["🗄️ Database Operations"])
+  Tools(["🧰 Development Tooling"])
+  Terminal(["🖥️ Terminal Interface"])
 
   External -->|provides runtime| Core
   External -->|provides cloud backups| Data
@@ -64,12 +65,15 @@ flowchart LR
   class Core orchestration;
 ```
 
+External integrations include Docker, NGrok, Engine Yard, Trello, and GitHub.
+
 ### Alternative Perspectives
 
 <details>
 <summary><strong>1. Class Diagram - Structural Relationships</strong> (Click to expand)</summary>
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"fontSize": "13px", "primaryColor": "#E6E9ED", "primaryBorderColor": "#657180", "primaryTextColor": "#3E342C", "lineColor": "#64748B", "secondaryColor": "#D6EAF8", "tertiaryColor": "#F5F5F2"}}}%%
 classDiagram
   class ObrasUtils["⚙️ obras_utils Core"] {
     +OBRAS_UTILS_VERSION: String
@@ -129,6 +133,7 @@ classDiagram
 <summary><strong>2. Journey Process - State Transitions</strong> (Click to expand)</summary>
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"fontSize": "13px", "primaryColor": "#E6E9ED", "primaryBorderColor": "#657180", "primaryTextColor": "#3E342C", "lineColor": "#64748B", "secondaryColor": "#D6EAF8", "tertiaryColor": "#F5F5F2"}}}%%
 stateDiagram-v2
   state "🚀 Project Init" as ProjectInit
   state "🏢 Site Selection" as SiteSelection
@@ -180,6 +185,7 @@ stateDiagram-v2
 <summary><strong>3. Mind Map - Interconnected Themes</strong> (Click to expand)</summary>
 
 ```mermaid
+%%{init: {"theme": "base", "themeVariables": {"fontSize": "13px", "primaryColor": "#E6E9ED", "primaryBorderColor": "#657180", "primaryTextColor": "#3E342C", "lineColor": "#64748B", "secondaryColor": "#D6EAF8", "tertiaryColor": "#F5F5F2"}}}%%
 mindmap
   root((🛠️ Bash Automation Devenv))
     Site_Management[🏢 Site Management]
@@ -572,4 +578,3 @@ This project is crafted by InMov - Intelligence in Movement (2013-2020) under Ro
 * [Trello CLI (3llo)](https://github.com/qcam/3llo) - Command-line interface for Trello project management integration
 * [tig](https://github.com/jonas/tig) - Text-mode interface for Git providing enhanced repository browsing
 * [Mailcatcher](https://github.com/sj26/mailcatcher) - Simple SMTP server for email testing in development environments
-
